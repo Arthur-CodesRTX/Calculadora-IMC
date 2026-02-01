@@ -24,7 +24,7 @@ function Footer() {
 
       {/* Copyright */}
       <span className="opacity-70 text-xs [text-shadow:1px_1px_4px_rgba(0,0,0,0.5)]">
-        © 2023 BioCalc. Todos os direitos reservados.
+        © 2023 BioCalc. Todos os direitos
       </span>
 
       {/* Links de navegação */}
