@@ -11,7 +11,7 @@ import { faPerson } from "@fortawesome/free-solid-svg-icons";
 
 function Calculator() {
   return (
-    <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  p-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
+    <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  p-8 shadow-[0_0_15px_rgba(256,256,256,0.1)] my-10">
       <form
         action=""
         className="flex flex-col items-center justify-center gap-8"
