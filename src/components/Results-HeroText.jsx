@@ -23,6 +23,14 @@ function ResultsHeroText() {
           </span>
         </article>
       </section>
+
+      <div className="w-full h-6 bg-[#273946] rounded-xl text-white text-xl">
+        <div className="w-50 h-6 bg-[#F6C90E] rounded-xl"></div>
+        <span>Magreza</span>
+        <span>Normal</span>
+        <span>Sobrepeso</span>
+        <span>Obesidade</span>
+      </div>
     </main>
   );
 }
