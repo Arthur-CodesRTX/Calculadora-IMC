@@ -113,3 +113,5 @@ function Calculator() {
 }
 
 export default Calculator;
+// Adicionar as span com erros e ativar elas quando não for preenchido
+// Começar código para colher os dados dos inputs
