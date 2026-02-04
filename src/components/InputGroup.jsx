@@ -7,7 +7,7 @@ const InputGroup = ({ labelText, id, type, name, placeholder }) => {
         name={name}
         id={id}
         placeholder={placeholder}
-        className="bg-[#6A7C82]/25 rounded-2xl py-1.5 px-4 my-1 border-[#B1BABD] border-2 backdrop-blur-2xl border-solid text-sm font-normal focus:outline-none w-full focus-within:bg-[#55636A] transition ease-in-out duration-200"
+        className="bg-[#6A7C82]/25 rounded-2xl py-1.5 px-4 my-1 border-[#B1BABD] border-2 backdrop-blur-2xl border-solid text-sm font-normal focus:outline-none w-full focus-within:bg-[#4b575e] transition ease-in-out duration-200"
       />
     </label>
   );

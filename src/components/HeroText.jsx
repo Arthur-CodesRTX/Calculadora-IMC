@@ -1,6 +1,6 @@
 function HeroText() {
   return (
-    <section className="text-left flex flex-col gap-12 my-10">
+    <section className="text-left h-full flex flex-col gap-12 my-12">
       <h1 className="text-5xl font-bold">
         <span className="drop-shadow-[0_3px_6px_rgba(0,0,0,0.5)]">
           <span className="text-6xl bg-linear-to-b from-[#F6C90E] to-[#F7E083] bg-clip-text text-transparent font-bold">
