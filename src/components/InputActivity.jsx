@@ -1,4 +1,4 @@
-const InputActivity = ({ labelText, name, type, id, value }) => {
+const InputActivity = ({ labelText, name, type, id, value, onChange }) => {
   return (
     <div className="w-full h-full">
       {/* 1. O input vem PRIMEIRO e fora do label (ou antes do conteúdo) */}
@@ -8,6 +8,7 @@ const InputActivity = ({ labelText, name, type, id, value }) => {
         id={id} // id deve bater com o htmlFor
         value={value}
         className="sr-only peer"
+        onChange={onChange}
       />
 
       {/* 2. O label vem DEPOIS e usa peer-checked */}

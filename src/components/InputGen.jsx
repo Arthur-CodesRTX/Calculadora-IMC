@@ -1,4 +1,4 @@
-const InputGen = ({ value, type, id, name, gen }) => {
+const InputGen = ({ value, type, id, name, gen, onChange }) => {
   return (
     <div>
       <input
@@ -7,6 +7,7 @@ const InputGen = ({ value, type, id, name, gen }) => {
         id={id}
         value={value}
         className="sr-only peer"
+        onChange={onChange}
       />
       <label
         htmlFor={id}

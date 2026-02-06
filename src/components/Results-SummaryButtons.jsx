@@ -1,6 +1,20 @@
-import { useNavigate } from "react-router-dom";
+import { use, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ResultsSummaryButtons() {
+  const location = useLocation();
+
+  const dados = location.state;
+
+  const [messages, setMessages] = useState({
+    magreza: `Seu IMC indica que você está abaixo do peso ideal. É importante ter atenção à sua nutrição para garantir que seu corpo receba a energia necessária.Seu gasto calórico diário é de {valor} calorias. Se o seu objetivo for ganhar peso de forma saudável, você deve consumir mais calorias do que esse valor diariamente.`,
+    normal: `Seu IMC indica que você está em sua faixa de peso ideal. Parabéns! Manter-se nessa categoria é um excelente sinal de que seu equilíbrio entre alimentação e atividade física está funcionando. Seu gasto calórico diário é de {valor} calorias. Para manter o seu peso atual, tente consumir uma quantidade de calorias próxima a esse valor, mantendo o foco na qualidade dos alimentos e na constância dos exercícios.`,
+    sobrepeso: `Seu IMC indica que você está na categoria de sobrepeso. Este é um momento oportuno para avaliar seus hábitos e prevenir possíveis riscos à saúde a longo prazo. Seu gasto calórico diário é de {valor} calorias. Se o seu objetivo for reduzir o peso de forma sustentável, o ideal é consumir um pouco menos de calorias do que esse valor diariamente, combinando isso a uma rotina de atividades físicas.`,
+    obesidade: `Seu IMC indica um quadro de obesidade. É recomendável buscar orientação de profissionais de saúde para traçar um plano seguro de reeducação alimentar e exercícios, visando melhorar sua disposição e longevidade. Seu gasto calórico diário é de {valor} calorias. Para iniciar um processo de perda de peso saudável, você deve consumir menos calorias do que esse valor total, focando em escolhas alimentares mais naturais e nutritivas.`,
+  });
+
+  console.log(dados.inputAge);
+
   const navigate = useNavigate();
 
   const recalculate = (e) => {

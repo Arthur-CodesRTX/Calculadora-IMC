@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-function Button() {
+function Button({ formData }) {
   const navigate = useNavigate();
 
   const handleCalculate = (e) => {
     e.preventDefault();
-    navigate("./results", { replace: true });
+    navigate("./results", { replace: true, state: formData });
   };
 
   return (

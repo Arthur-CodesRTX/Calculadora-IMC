@@ -8,8 +8,27 @@ import {
   faPersonDress,
 } from "@fortawesome/free-solid-svg-icons";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 function Calculator() {
+  const [formData, setFormData] = useState({
+    inputAge: "",
+    inputHeight: "",
+    inputWeight: "",
+    inputActivity: "",
+    inputGen: "",
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  console.log(formData);
+
   return (
     <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  px-12 py-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
       <form
@@ -23,6 +42,7 @@ function Calculator() {
             id={"inputAge"}
             type={"text"}
             placeholder={"Ex: 17"}
+            onChange={handleChange}
           />
           <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
@@ -34,6 +54,7 @@ function Calculator() {
             id={"inputHeight"}
             type={"text"}
             placeholder={"Ex: 180"}
+            onChange={handleChange}
           />
           <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
@@ -45,6 +66,7 @@ function Calculator() {
             id={"inputWeight"}
             type={"text"}
             placeholder={"Ex: 70"}
+            onChange={handleChange}
           />
           <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
@@ -63,6 +85,7 @@ function Calculator() {
               id={"activity-low"}
               labelText={"Baixa"}
               value={"low"}
+              onChange={handleChange}
             />
 
             <InputActivity
@@ -71,6 +94,7 @@ function Calculator() {
               id={"activity-medium"}
               labelText={"Regularmente"}
               value={"medium"}
+              onChange={handleChange}
             />
 
             <InputActivity
@@ -79,6 +103,7 @@ function Calculator() {
               id={"activity-high"}
               labelText={"Intensa"}
               value={"high"}
+              onChange={handleChange}
             />
           </div>
 
@@ -99,6 +124,7 @@ function Calculator() {
               name={"inputGen"}
               id={"inputMale"}
               gen={<FontAwesomeIcon icon={faPerson} />}
+              onChange={handleChange}
             />
             <InputGen
               value={"female"}
@@ -106,6 +132,7 @@ function Calculator() {
               name={"inputGen"}
               id={"inputFemale"}
               gen={<FontAwesomeIcon icon={faPersonDress} />}
+              onChange={handleChange}
             />
           </div>
 
@@ -114,12 +141,11 @@ function Calculator() {
           </span>
         </div>
 
-        <Button />
+        <Button formData={formData} />
       </form>
     </section>
   );
 }
 
 export default Calculator;
-// Adicionar as span com erros e ativar elas quando não for preenchido
 // Começar código para colher os dados dos inputs
