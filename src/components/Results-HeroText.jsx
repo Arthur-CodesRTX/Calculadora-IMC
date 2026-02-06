@@ -1,4 +1,12 @@
+import { useLocation } from "react-router-dom";
+
+
 function ResultsHeroText() {
+  const location = useLocation();
+
+  const dados = location.state;
+
+
   return (
     <main className="flex items-center flex-col">
       <h1 className="text-5xl py-8">
@@ -13,13 +21,14 @@ function ResultsHeroText() {
           <h2 className="text-2xl font-bold">Seu IMC</h2>
           <span className="text-6xl font-bold">{} 17</span>
           <p className="bg-linear-to-r from-[#f5d03b] to-[#F6C90E] text-2xl rounded-4xl text-[#303841] font-bold px-3 py-2 text-shadow-none">
-            {} Magreza
+            {/* {type}  */}
           </p>
         </article>
         <article className="flex flex-col bg-linear-to-b from-[#1E3A4A] to-[#2F4049] rounded-2xl gap-4 py-12 text-white justify-start items-center w-90 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
           <h2 className="text-2xl font-bold">Gasto Calórico Diário</h2>
           <span className="text-6xl font-bold">
-            {} 2150 <span className="text-4xl">kcal</span>
+            {/* {kcal}   */}
+            <span className="text-4xl">kcal</span>
           </span>
         </article>
       </section>

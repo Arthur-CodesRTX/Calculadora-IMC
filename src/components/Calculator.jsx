@@ -28,6 +28,7 @@ function Calculator() {
   }
 
   console.log(formData);
+  console.log(typeof inputAge)
 
   return (
     <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  px-12 py-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
@@ -84,7 +85,7 @@ function Calculator() {
               name={"inputActivity"}
               id={"activity-low"}
               labelText={"Baixa"}
-              value={"low"}
+              value={"1.2"}
               onChange={handleChange}
             />
 
@@ -92,8 +93,8 @@ function Calculator() {
               type={"radio"}
               name={"inputActivity"}
               id={"activity-medium"}
-              labelText={"Regularmente"}
-              value={"medium"}
+              labelText={"Moderada"}
+              value={"1.5"}
               onChange={handleChange}
             />
 
@@ -102,7 +103,7 @@ function Calculator() {
               name={"inputActivity"}
               id={"activity-high"}
               labelText={"Intensa"}
-              value={"high"}
+              value={"1.7"}
               onChange={handleChange}
             />
           </div>
