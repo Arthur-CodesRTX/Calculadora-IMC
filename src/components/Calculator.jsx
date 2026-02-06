@@ -136,7 +136,7 @@ function Calculator() {
             />
           </div>
 
-          <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
+          <span className="font-extralight text-sm text-red-400 w-full pb-2 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>

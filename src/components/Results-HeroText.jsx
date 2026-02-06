@@ -1,7 +1,7 @@
 function ResultsHeroText() {
   return (
     <main className="flex items-center flex-col">
-      <h1 className="text-5xl py-12">
+      <h1 className="text-5xl py-8">
         <span className="drop-shadow-[0_3px_6px_rgba(0,0,0,0.5)]">
           <span className="text-5xl bg-linear-to-b from-[#F6C90E] to-[#F7E083] bg-clip-text text-transparent font-bold">
             Resultado da sua avaliação
