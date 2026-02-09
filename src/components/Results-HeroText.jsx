@@ -1,11 +1,29 @@
-import { useLocation } from "react-router-dom";
+import  useForm  from "../hooks/useForm";
 
 
 function ResultsHeroText() {
-  const location = useLocation();
+  
+  const {taxaMetabolicaTotal, type, message, imc  } = useForm()
 
-  const dados = location.state;
+  let yellowBarSize = "";
 
+  switch(true) {
+    case type === "Magreza":
+      yellowBarSize = "1/4"
+        break;
+    case type === "Normal": // Não precisa testar o mínimo, pois o case anterior já pegou
+      yellowBarSize = "2/4"
+        break;
+    case type === "Sobrepeso":
+      yellowBarSize = "3/4"
+        break;
+    case type === "Obesidade":
+      yellowBarSize = "4/4"
+  }
+  
+
+  let yellowBar = `w-${yellowBarSize} h-6 bg-[#F6C90E] rounded-xl`;
+  
 
   return (
     <main className="flex items-center flex-col">
@@ -19,22 +37,22 @@ function ResultsHeroText() {
       <section className="flex justify-around gap-12 [text-shadow:1px_2px_5px_rgba(0,0,0,0.5)] mb-8">
         <article className="flex flex-col bg-linear-to-b from-[#1E3A4A] to-[#2F4049] rounded-2xl gap-4 py-12 text-white justify-start items-center w-90 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
           <h2 className="text-2xl font-bold">Seu IMC</h2>
-          <span className="text-6xl font-bold">{} 17</span>
+          <span className="text-6xl font-bold">{imc} </span>
           <p className="bg-linear-to-r from-[#f5d03b] to-[#F6C90E] text-2xl rounded-4xl text-[#303841] font-bold px-3 py-2 text-shadow-none">
-            {/* {type}  */}
+            {type} 
           </p>
         </article>
         <article className="flex flex-col bg-linear-to-b from-[#1E3A4A] to-[#2F4049] rounded-2xl gap-4 py-12 text-white justify-start items-center w-90 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
           <h2 className="text-2xl font-bold">Gasto Calórico Diário</h2>
           <span className="text-6xl font-bold">
-            {/* {kcal}   */}
-            <span className="text-4xl">kcal</span>
+            {taxaMetabolicaTotal}  
+            <span className="text-4xl"> kcal</span>
           </span>
         </article>
       </section>
 
       <div className="w-full h-6 bg-[#273946] rounded-xl mb-2">
-        <div className="w-1/4 h-6 bg-[#F6C90E] rounded-xl"></div>
+        <div className={yellowBar}></div>
       </div>
 
       <ul className="flex w-full justify-between font-medium text-white text-xl mb-8 [text-shadow:1px_2px_5px_rgba(0,0,0,0.5)]">

@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
-// import { useForm } from "../hooks/useForm";
+import  useForm  from "../hooks/useForm";
 
 
 
 function ResultsSummaryButtons() {
 
+  const {message} = useForm()
+  
   const navigate = useNavigate();
 
   const recalculate = (e) => {
@@ -14,8 +16,8 @@ function ResultsSummaryButtons() {
 
   return (
     <section className="flex flex-col items-center gap-8">
-      <p className="bg-linear-to-b from-[#1E3A4A] to-[#33434b] rounded-[60px] py-4 px-8 text-white text-lg font-light text-center [text-shadow:1px_2px_5px_rgba(0,0,0,0.5)]">
-        {}
+      <p className="bg-linear-to-b from-[#1E3A4A] to-[#33434b] rounded-[60px] py-4 px-8 text-white text-lg font-light text-center [text-shadow:1px_2px_5px_rgba(0,0,0,0.5)] whitespace-pre-line">
+        {message}
       </p>
       <div className="flex gap-8 font-bold text-2xl">
         <button
