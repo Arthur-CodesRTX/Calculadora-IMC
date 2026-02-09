@@ -6,18 +6,7 @@ export default function useForm(){
 
     const dados = location.state;
 
-    if (!dados) {
-    return {
-      taxaMetabolicaTotal: 0,
-      type: "Carregando...",
-      message: "Dados não encontrados.",
-      imc: 0
-    };
-  }
-
     const { inputWeight, inputHeight, inputAge, inputGen, inputActivity } = dados;
-
-    console.log(inputActivity, inputAge)
 
     const weight = Number(inputWeight);
     const age = Number(inputAge);

@@ -1,7 +1,6 @@
 import InputGroup from "./InputGroup";
 import InputActivity from "./InputActivity";
 import InputGen from "./InputGen";
-import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleExclamation,
@@ -9,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Calculator() {
   const [formData, setFormData] = useState({
@@ -27,8 +27,35 @@ function Calculator() {
     }));
   }
 
-  console.log(formData);
-  console.log(typeof inputAge)
+  const navigate = useNavigate();
+  let key;
+  let existsError = false;
+  const allInputs = [formData.inputAge, formData.inputHeight, formData.inputWeight, formData.inputActivity, formData.inputGen ];
+
+  const handleCalculate = (e) => {
+    e.preventDefault();
+    for(let i = 0; i < allInputs.length; i++){
+      if(allInputs[0] !== ""){
+        key = true;
+      } else{
+        key = false
+      }
+    }
+
+    if(key === true){
+      e.preventDefault();
+      navigate("./results", { replace: true, state: formData });
+    } else{
+      existsError = true
+    }
+  };
+console.log(formData.inputAge,typeof formData.inputAge )
+console.log(formData.inputHeight,typeof formData.inputHeight )
+console.log(formData.inputWeight,typeof formData.inputWeight )
+console.log(formData.inputActivity,typeof formData.inputActivity )
+console.log(formData.inputGen,typeof formData.inputGen )
+
+
 
   return (
     <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  px-12 py-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
@@ -45,7 +72,7 @@ function Calculator() {
             placeholder={"Ex: 17"}
             onChange={handleChange}
           />
-          <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
+          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
 
@@ -57,7 +84,7 @@ function Calculator() {
             placeholder={"Ex: 180"}
             onChange={handleChange}
           />
-          <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
+          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
 
@@ -69,7 +96,7 @@ function Calculator() {
             placeholder={"Ex: 70"}
             onChange={handleChange}
           />
-          <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
+          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -108,7 +135,7 @@ function Calculator() {
             />
           </div>
 
-          <span className="font-extralight text-sm text-red-400 w-full pb-3 pt-1 cursor-default">
+          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -137,12 +164,19 @@ function Calculator() {
             />
           </div>
 
-          <span className="font-extralight text-sm text-red-400 w-full pb-2 pt-1 cursor-default">
+          <span className="font-extralight text-sm text-transparent w-full pb-2 pt-1 cursor-default">
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
 
-        <Button formData={formData} />
+        <button
+      type="submit"
+      className="bg-linear-to-b from-[#F6C90E] to-[#F7CE24] opacity-100 rounded-2xl px-16 py-3 cursor-pointer w-fit text-2xl font-bold text-[#2E4750] hover:shadow-[0_0_15px_rgba(256,256,256,0.3)] transition ease-in-out duration-200 "
+      onClick={handleCalculate}
+      formData={formData}
+    >
+      Enviar
+    </button>
       </form>
     </section>
   );
@@ -150,3 +184,4 @@ function Calculator() {
 
 export default Calculator;
 // Começar código para colher os dados dos inputs
+// provavelmente vou ter que criar um useState usando existsError
