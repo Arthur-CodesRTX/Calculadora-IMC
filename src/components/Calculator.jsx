@@ -29,7 +29,7 @@ function Calculator() {
 
   const navigate = useNavigate();
   let key;
-  let existsError = false;
+  const [existsError, setExistsError] = useState(false)
   const allInputs = [formData.inputAge, formData.inputHeight, formData.inputWeight, formData.inputActivity, formData.inputGen ];
 
   const handleCalculate = (e) => {
@@ -46,7 +46,7 @@ function Calculator() {
       e.preventDefault();
       navigate("./results", { replace: true, state: formData });
     } else{
-      existsError = true
+      setExistsError(true)
     }
   };
 console.log(formData.inputAge,typeof formData.inputAge )
@@ -54,6 +54,7 @@ console.log(formData.inputHeight,typeof formData.inputHeight )
 console.log(formData.inputWeight,typeof formData.inputWeight )
 console.log(formData.inputActivity,typeof formData.inputActivity )
 console.log(formData.inputGen,typeof formData.inputGen )
+console.log(existsError)
 
 
 
@@ -84,7 +85,7 @@ console.log(formData.inputGen,typeof formData.inputGen )
             placeholder={"Ex: 180"}
             onChange={handleChange}
           />
-          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
+          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
 
@@ -96,7 +97,7 @@ console.log(formData.inputGen,typeof formData.inputGen )
             placeholder={"Ex: 70"}
             onChange={handleChange}
           />
-          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
+          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -135,7 +136,7 @@ console.log(formData.inputGen,typeof formData.inputGen )
             />
           </div>
 
-          <span className="font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default">
+          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -164,7 +165,7 @@ console.log(formData.inputGen,typeof formData.inputGen )
             />
           </div>
 
-          <span className="font-extralight text-sm text-transparent w-full pb-2 pt-1 cursor-default">
+          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -183,5 +184,4 @@ console.log(formData.inputGen,typeof formData.inputGen )
 }
 
 export default Calculator;
-// Começar código para colher os dados dos inputs
 // provavelmente vou ter que criar um useState usando existsError
