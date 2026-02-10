@@ -19,6 +19,14 @@ function Calculator() {
     inputGen: "",
   });
 
+  const [errors, setErrors] = useState({
+    inputAge: false,
+    inputHeight: false,
+    inputWeight: false,
+    inputActivity: false,
+    inputGen: false,
+  });
+
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -28,35 +36,32 @@ function Calculator() {
   }
 
   const navigate = useNavigate();
-  let key;
-  const [existsError, setExistsError] = useState(false)
-  const allInputs = [formData.inputAge, formData.inputHeight, formData.inputWeight, formData.inputActivity, formData.inputGen ];
 
   const handleCalculate = (e) => {
     e.preventDefault();
-    for(let i = 0; i < allInputs.length; i++){
-      if(allInputs[0] !== ""){
-        key = true;
-      } else{
-        key = false
-      }
-    }
 
-    if(key === true){
-      e.preventDefault();
+    const newErrors = {};
+
+    Object.keys(formData).forEach((chave) => {
+      const valor = formData[chave];
+
+      newErrors[chave] = valor.trim() === "";
+    });
+
+    setErrors(newErrors);
+
+    const temErro = Object.values(newErrors).includes(true);
+
+    if (!temErro) {
       navigate("./results", { replace: true, state: formData });
-    } else{
-      setExistsError(true)
     }
   };
-console.log(formData.inputAge,typeof formData.inputAge )
-console.log(formData.inputHeight,typeof formData.inputHeight )
-console.log(formData.inputWeight,typeof formData.inputWeight )
-console.log(formData.inputActivity,typeof formData.inputActivity )
-console.log(formData.inputGen,typeof formData.inputGen )
-console.log(existsError)
-
-
+  // console.log(formData.inputAge, typeof formData.inputAge);
+  // console.log(formData.inputHeight, typeof formData.inputHeight);
+  // console.log(formData.inputWeight, typeof formData.inputWeight);
+  // console.log(formData.inputActivity, typeof formData.inputActivity);
+  // console.log(formData.inputGen, typeof formData.inputGen);
+  console.log(errors);
 
   return (
     <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  px-12 py-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
@@ -73,7 +78,9 @@ console.log(existsError)
             placeholder={"Ex: 17"}
             onChange={handleChange}
           />
-          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
+          <span
+            className={`font-extralight text-sm ${errors.inputAge ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}
+          >
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
 
@@ -85,7 +92,9 @@ console.log(existsError)
             placeholder={"Ex: 180"}
             onChange={handleChange}
           />
-          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
+          <span
+            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+          >
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
 
@@ -97,7 +106,9 @@ console.log(existsError)
             placeholder={"Ex: 70"}
             onChange={handleChange}
           />
-          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
+          <span
+            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+          >
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -136,7 +147,9 @@ console.log(existsError)
             />
           </div>
 
-          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
+          <span
+            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+          >
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
@@ -165,19 +178,21 @@ console.log(existsError)
             />
           </div>
 
-          <span className={`font-extralight text-sm ${existsError ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}>
+          <span
+            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+          >
             <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
           </span>
         </div>
 
         <button
-      type="submit"
-      className="bg-linear-to-b from-[#F6C90E] to-[#F7CE24] opacity-100 rounded-2xl px-16 py-3 cursor-pointer w-fit text-2xl font-bold text-[#2E4750] hover:shadow-[0_0_15px_rgba(256,256,256,0.3)] transition ease-in-out duration-200 "
-      onClick={handleCalculate}
-      formData={formData}
-    >
-      Enviar
-    </button>
+          type="submit"
+          className="bg-linear-to-b from-[#F6C90E] to-[#F7CE24] opacity-100 rounded-2xl px-16 py-3 cursor-pointer w-fit text-2xl font-bold text-[#2E4750] hover:shadow-[0_0_15px_rgba(256,256,256,0.3)] transition ease-in-out duration-200 "
+          onClick={handleCalculate}
+          formData={formData}
+        >
+          Enviar
+        </button>
       </form>
     </section>
   );
