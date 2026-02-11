@@ -45,7 +45,17 @@ function Calculator() {
     Object.keys(formData).forEach((chave) => {
       const valor = formData[chave];
 
-      newErrors[chave] = valor.trim() === "";
+      if(chave === "inputAge" || chave === "inputHeight" || chave === "inputWeight"){
+        if(valor.trim() === "" || valor.trim().length > 3){
+        newErrors[chave] = true;
+        } else{
+        newErrors[chave] = false;
+        }
+      } else{
+        newErrors[chave] = valor.trim() === "";
+      }
+      
+      
     });
 
     setErrors(newErrors);
@@ -56,11 +66,7 @@ function Calculator() {
       navigate("./results", { replace: true, state: formData });
     }
   };
-  // console.log(formData.inputAge, typeof formData.inputAge);
-  // console.log(formData.inputHeight, typeof formData.inputHeight);
-  // console.log(formData.inputWeight, typeof formData.inputWeight);
-  // console.log(formData.inputActivity, typeof formData.inputActivity);
-  // console.log(formData.inputGen, typeof formData.inputGen);
+  
   console.log(errors);
 
   return (
@@ -74,42 +80,42 @@ function Calculator() {
             labelText={"Digite sua idade"}
             name={"inputAge"}
             id={"inputAge"}
-            type={"text"}
+            type={"number"}
             placeholder={"Ex: 17"}
             onChange={handleChange}
           />
           <span
-            className={`font-extralight text-sm ${errors.inputAge ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default`}
+            className={`font-extralight text-sm ${errors.inputAge ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
           >
-            <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
+            <FontAwesomeIcon icon={faCircleExclamation} /> Obrigatório (máx. 3 dígitos)
           </span>
 
           <InputGroup
             labelText={"Digite sua altura (cm)"}
             name={"inputHeight"}
             id={"inputHeight"}
-            type={"text"}
+            type={"number"}
             placeholder={"Ex: 180"}
             onChange={handleChange}
           />
           <span
-            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+            className={`font-extralight text-sm ${errors.inputHeight ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
           >
-            <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
+            <FontAwesomeIcon icon={faCircleExclamation} /> Obrigatório (máx. 3 dígitos)
           </span>
 
           <InputGroup
             labelText={"Digite seu peso (kg)"}
             name={"inputWeight"}
             id={"inputWeight"}
-            type={"text"}
+            type={"number"}
             placeholder={"Ex: 70"}
             onChange={handleChange}
           />
           <span
-            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+            className={`font-extralight text-sm ${errors.inputWeight ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
           >
-            <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
+            <FontAwesomeIcon icon={faCircleExclamation} /> Obrigatório (máx. 3 dígitos)
           </span>
         </div>
 
@@ -148,9 +154,9 @@ function Calculator() {
           </div>
 
           <span
-            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+            className={`font-extralight text-sm ${errors.inputActivity ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
           >
-            <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
+            <FontAwesomeIcon icon={faCircleExclamation} /> Obrigatório
           </span>
         </div>
 
@@ -179,9 +185,9 @@ function Calculator() {
           </div>
 
           <span
-            className={`font-extralight text-sm text-transparent w-full pb-3 pt-1 cursor-default`}
+            className={`font-extralight text-sm ${errors.inputGen ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
           >
-            <FontAwesomeIcon icon={faCircleExclamation} /> Campo obrigatório
+            <FontAwesomeIcon icon={faCircleExclamation} /> Obrigatório
           </span>
         </div>
 
