@@ -29,10 +29,19 @@ function Calculator() {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    if(name === "inputAge" || name === "inputHeight" || name === "inputWeight"){
+        if(/^[0-9]*$/.test(value) && value.length <= 3){
+            setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+        }));
+        }
+    } else{
+      setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    }
   }
 
   const navigate = useNavigate();
@@ -67,7 +76,8 @@ function Calculator() {
     }
   };
   
-  console.log(errors);
+  // console.log(errors);
+  console.log(formData)
 
   return (
     <section className="border-[#F6C90E] border-solid border-2 flex flex-col text-[#f7f7f7] rounded-2xl  bg-linear-to-b from-[#282E36]/50 via-[#2C333B]/50 to-[#303841]/50  px-12 py-8 shadow-[0_0_15px_rgba(256,256,256,0.1)]">
@@ -80,9 +90,10 @@ function Calculator() {
             labelText={"Digite sua idade"}
             name={"inputAge"}
             id={"inputAge"}
-            type={"number"}
+            type={"text"}
             placeholder={"Ex: 17"}
             onChange={handleChange}
+            value={formData.inputAge}
           />
           <span
             className={`font-extralight text-sm ${errors.inputAge ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
@@ -94,9 +105,10 @@ function Calculator() {
             labelText={"Digite sua altura (cm)"}
             name={"inputHeight"}
             id={"inputHeight"}
-            type={"number"}
+            type={"text"}
             placeholder={"Ex: 180"}
             onChange={handleChange}
+            value={formData.inputHeight}
           />
           <span
             className={`font-extralight text-sm ${errors.inputHeight ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
@@ -108,9 +120,10 @@ function Calculator() {
             labelText={"Digite seu peso (kg)"}
             name={"inputWeight"}
             id={"inputWeight"}
-            type={"number"}
+            type={"text"}
             placeholder={"Ex: 70"}
             onChange={handleChange}
+            value={formData.inputWeight}
           />
           <span
             className={`font-extralight text-sm ${errors.inputWeight ? "text-red-400" : "text-transparent"} w-full pb-3 pt-1 cursor-default transition duration-300 ease-in-out`}
@@ -193,7 +206,10 @@ function Calculator() {
 
         <button
           type="submit"
-          className="bg-linear-to-b from-[#F6C90E] to-[#F7CE24] opacity-100 rounded-2xl px-16 py-3 cursor-pointer w-fit text-2xl font-bold text-[#2E4750] hover:shadow-[0_0_15px_rgba(256,256,256,0.3)] transition ease-in-out duration-200 "
+          className="bg-linear-to-b from-[#F6C90E] to-[#F7CE24] opacity-100 rounded-2xl px-16 py-3 cursor-pointer w-fit text-2xl font-bold text-[#2E4750] hover:shadow-[0_0_15px_rgba(256,256,256,0.3)] transition ease-in-out duration-200 active:scale-95
+    active:after:opacity-100 
+    after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:after:h-full 
+    after:bg-white/20 after:opacity-0 after:transition-opacity"
           onClick={handleCalculate}
           formData={formData}
         >

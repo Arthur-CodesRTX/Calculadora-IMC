@@ -3,26 +3,26 @@ import  useForm  from "../hooks/useForm";
 
 function ResultsHeroText() {
   
-  const {taxaMetabolicaTotal, type, message, imc  } = useForm()
+  const {taxaMetabolicaTotal, type, imc  } = useForm()
 
   let yellowBarSize = "";
 
+  console.log(typeof taxaMetabolicaTotal,typeof type,typeof imc)
+
+
   switch(true) {
     case type === "Magreza":
-      yellowBarSize = "1/4"
+      yellowBarSize = "w-1/4"
         break;
     case type === "Normal": // Não precisa testar o mínimo, pois o case anterior já pegou
-      yellowBarSize = "2/4"
+      yellowBarSize = "w-2/4"
         break;
     case type === "Sobrepeso":
-      yellowBarSize = "3/4"
+      yellowBarSize = "w-3/4"
         break;
     case type === "Obesidade":
-      yellowBarSize = "4/4"
+      yellowBarSize = "w-full"
   }
-  
-
-  let yellowBar = `w-${yellowBarSize} h-6 bg-[#F6C90E] rounded-xl`;
   
 
   return (
@@ -52,7 +52,7 @@ function ResultsHeroText() {
       </section>
 
       <div className="w-full h-6 bg-[#273946] rounded-xl mb-2">
-        <div className={yellowBar}></div>
+        <div className={`${yellowBarSize} h-6 bg-[#F6C90E] rounded-xl`}></div>
       </div>
 
       <ul className="flex w-full justify-between font-medium text-white text-xl mb-8 [text-shadow:1px_2px_5px_rgba(0,0,0,0.5)]">
